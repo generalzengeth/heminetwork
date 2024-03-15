@@ -127,7 +127,7 @@ services:
       - /git/op-geth/build/bin/geth
       - --dev
       - --dev.period
-      - '1'
+      - '12'
       - --keystore
       - /tmp/keystore
       - --password
@@ -189,8 +189,8 @@ services:
       - --l2=ws://op-geth-l2:8551
       - --l2.jwt-secret=/tmp/jwt.txt
       - --sequencer.enabled
-      - --sequencer.l1-confs=0
-      - --verifier.l1-confs=0
+      - --sequencer.l1-confs=1
+      - --verifier.l1-confs=1
       - --rollup.config=/l2configs/rollup.json
       - --rpc.addr=0.0.0.0
       - --rpc.port=8547
@@ -199,6 +199,8 @@ services:
       - --l1=http://op-geth-l1:8545
       - --l1.rpckind=any
       - --l1.trustrpc
+      - --l1.http-poll-interval=1s
+      - --l1.rpc-max-batch-size=1
       - --log.level=trace
     volumes:
       - l2configs:/l2configs
